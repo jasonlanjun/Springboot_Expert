@@ -1,0 +1,88 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/SidebarHead :: head"></th:block>
+</head>
+
+<body>
+<div th:fragment="sidebar">
+    <ul class="accordion" id="accordion">
+        <li></li>
+        <li>
+            <div class="link">
+                <i class="fa fa-dashboard"></i><a th:href="@{/admin/dashboard}">Dashboard</a>
+            </div>
+        </li>
+        <li>
+            <div class="link">
+                <i class="fa fa-tags"></i><a th:href="@{/admin/products}">Products</a>
+            </div>
+        </li>
+        <li>
+            <div class="link">
+                <i class="fa fa-qrcode"></i><a th:href="@{/admin/purchases}">Purchase</a>
+            </div>
+        </li>
+        <li>
+            <div class="link">
+                <i class="fa fa-group"></i><a th:href="@{/admin/customers}">Customers</a>
+            </div>
+        </li>
+        <li>
+            <div class="link">
+                <i class="fa fa-shopping-cart"></i><a href="#">Sales</a><i
+                    class="fa fa-chevron-down"></i>
+            </div>
+            <ul class="submenu">
+                <li><a th:href="@{/admin/newbill}">New Bill</a></li>
+                <li><a th:href="@{/admin/billingitems}">Billing Items List</a></li>
+                <li><a th:href="@{/admin/sales}">Sales List</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="link">
+                <i class="fa fa-cube"></i><a th:href="@{/admin/stocks}">Stocks</a>
+            </div>
+        </li>
+        <li>
+            <div class="link">
+                <i class="fa fa-sitemap"></i><a th:href="@{/admin/suppliers}">Suppliers</a>
+            </div>
+        </li>
+        <li>
+            <div class="link">
+                <i class="fa fa-user"></i><a th:href="@{/admin/users}">Users</a>
+            </div>
+        </li>
+        <li>
+            <div class="link">
+                <i class="fa fa-file-pdf-o"></i>Reports<i
+                    class="fa fa-chevron-down"></i>
+            </div>
+            <ul class="submenu">
+                <li><a href="#">Invoice</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="#">Customers</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="link">
+                <i class="fa fa-cog"></i><a href="#">Settings</a><i
+                    class="fa fa-chevron-down"></i>
+            </div>
+            <ul class="submenu">
+                <li><a th:href="@{/admin/changepassword}">Change Password</a></li>
+                <li><a th:href="@{/admin/updateuserdetails}">Update
+                    Details</a></li>
+            </ul>
+
+        </li>
+        <li>
+            <div class="link">
+                <i class="fa fa-power-off"></i><a th:href="@{/logout}">Logout</a>
+            </div>
+        </li>
+
+    </ul>
+</div>
+</body>
+</html>

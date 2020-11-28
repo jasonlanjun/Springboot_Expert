@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/ErrorHead :: head"></th:block>
+</head>
+
+<body style="background-color: gainsboro;">
+<div th:replace="fragments/MainNavbar :: main-navbar"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+
+        <div class="col-sm-6">
+            <img alt="Main" style="width: 100%; margin-top: 120px;"
+                 th:src="@{/img/404.png}"/>
+            <p class="alert alert-danger fade in" style="text-align: center; font-size: 18px"
+               th:if="${param.token}">
+                <strong>Sorry ! Your password reset link has been expired.</strong>
+            </p>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+</body>
+</html>

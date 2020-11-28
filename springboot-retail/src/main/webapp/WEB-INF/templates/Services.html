@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+</head>
+
+<body style="background-color: white; padding-top: 30px;">
+<div th:replace="fragments/MainNavbar :: main-navbar"></div>
+<h6> The complete <strong>inventory and order management system </strong></h6>
+<div class="col-sm-1"></div>
+<div class="col-sm-2">
+    <span class="glyphicon glyphicon-th-large"></span>
+    <div class="h8">
+        <strong>Invite wholesale customers to buy in bulk online </strong>
+    </div>
+
+    <span class="glyphicon glyphicon-inbox"></span>
+    <div class="h8">
+        <strong>Create unique prices and discounts for each customer </strong>
+    </div>
+</div>
+
+<div class="col-sm-6">
+    <img alt="Main" style="width: 80%; margin-top: 50px;  margin-left: 75px;"
+         th:src="@{/img/Services.png}"/>
+</div>
+<div class="col-sm-2">
+    <span class="glyphicon glyphicon-wrench"></span>
+    <div class="h8">
+        <strong>Customize the design and use your own URL </strong>
+    </div>
+
+    <span class="glyphicon glyphicon-lock"></span>
+    <div class="h8">
+        <strong>Secure and private with unique logins for each user </strong>
+    </div>
+</div>
+<div class="col-sm-1"></div>
+
+</body>
+</html>

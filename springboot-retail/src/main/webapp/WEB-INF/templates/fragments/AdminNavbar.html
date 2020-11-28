@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+</head>
+<body>
+
+<div th:fragment="admin-navbar">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid navbar-custom">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">JOHNSON CONTROLS</a>
+            </div>
+            <div class="collapse navbar-collapse"
+                 id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a><b style="text-transform: capitalize;"
+                              th:inline="text">
+                        Welcome [[${#httpServletRequest.remoteUser}]] </b></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+    <link href="../css/home.css" rel="stylesheet" th:href="@{/css/home.css}" type="text/css"></link>
+</head>
+
+<body>
+<div th:replace="fragments/MainNavbar :: main-navbar"></div>
+
+<div class="h9">Welcome to Inventory management System</div>
+
+<div class="h10">Flytech Inventory is the best online inventory
+    software for Warehouse Management and High Volume Multi-Channel
+    eCommerce applications
+</div>
+
+<div class="col-sm-6">
+    <input class="button btn-theme-dark btn-lg" type="submit"
+           value="START A FREE TRIAL"/>
+</div>
+<div class="col-sm-6">
+    <input class="button btn-theme-dark btn-lg mr" type="submit"
+           value="REGISTER NOW"/>
+</div>
+</body>
+</html>

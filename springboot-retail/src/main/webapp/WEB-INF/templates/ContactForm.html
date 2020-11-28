@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+</head>
+
+<body style="background-color: white;">
+<div th:replace="fragments/MainNavbar :: main-navbar"></div>
+
+<div class="h11">Contact US</div>
+<div class="col-sm-6">
+    <form method="POST" th:action="@{/admin/savecontact}" th:object="${contact}">
+        <input th:field="*{id}" type="hidden"/>
+        <div class="form-group">
+            <input class="form-control input-lg" placeholder="Name" required="required"
+                   tabindex="1" th:field="*{name}" type="text"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control input-lg" placeholder="Email" required="required"
+                   tabindex="2" th:field="*{email}" type="text"/>
+        </div>
+        <div class="form-group">
+				<textarea class="form-control input-lg" cols="80"
+                          placeholder="Message" required="required" rows="12" tabindex="3"
+                          th:field="*{message}"></textarea>
+
+        </div>
+        <input class="button btn-theme-dark btn-lg mt" type="submit"
+               value="SEND NOW"/>
+    </form>
+</div>
+<div class="col-sm-1">
+    <div class="vl"></div>
+</div>
+
+<div class="col-sm-5">
+    <div class="contactHead">
+        <strong>ADDRESS</strong>
+    </div>
+    <div class="h12">
+        Building No-02, Commerzone IT Park, Yerwada, Pune-411006<br/>
+        Maharashtra, India
+    </div>
+    <br/> <br/>
+    <div class="contactHead">
+        <strong>CONTACT</strong>
+    </div>
+    <div class="h12">020-67475947</div>
+    <br/> <br/>
+    <div class="contactHead">
+        <strong>EMAIL</strong>
+    </div>
+    <div class="h12">anil.vishvkarma@jci.com</div>
+    <br/>
+</div>
+</body>
+</html>

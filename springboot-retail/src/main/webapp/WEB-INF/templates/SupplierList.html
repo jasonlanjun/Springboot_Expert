@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+    <th:block th:include="fragments/ListHead :: head"></th:block>
+
+    <script type="text/javascript">
+	$(document).ready(function() {
+		var table = $('#supplierlistTable').DataTable({
+			"sAjaxSource" : "/admin/supplierlist",
+			"sAjaxDataProp" : "",
+			"pageLength" : 10,
+			"info" : true,
+			"autoWidth" : true,
+			"lengthChange" : false,
+			"order" : [ [ 0, "asc" ] ],
+			"aoColumns" : [{  
+				'mData' : "id" 
+			}, {
+				"mData" : "supplierName"
+			}, {
+				"mData" : "supplierCode"
+			}, {
+				"mData" : "supplierEmail"
+			}, {
+				"mData" : "supplierPhone"
+			}, {
+				"mData" : "supplierStatus"
+			}, {
+				"mData" : "id",
+				"render": function ( data, type, row, meta ) {
+					return ('<a class="btn btn-info btn-sm" href="/admin/supplier/update/'+row.id+'">' + 'Edit' + '</a>'+' ' + '<a class="btn btn-danger btn-sm" href="/admin/supplier/delete/'+row.id+'">' + 'Delete' + '</a>');
+				}
+			}]
+		});
+	
+		$('#search-inp').on('keyup', function() {
+			table.search($(this).val()).draw();
+		});
+		
+		table.column(0).visible(false);
+	});
+
+    </script>
+</head>
+
+<body>
+<div th:replace="fragments/AdminNavbar :: admin-navbar"></div>
+<div class="wrapper">
+
+    <!-- sidebar -->
+    <div class="col-lg-2">
+        <div class="container-fluid">
+            <div th:replace="fragments/SidebarAdmin :: sidebar"></div>
+        </div>
+    </div>
+
+    <!-- main -->
+    <div class="col-lg-10  adminlisthead">
+        <div class="container-fluid">
+            <div class="well well-sm well-head">
+                <span style="margin-left: 10px;"> Supplier List </span>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- main -->
+    <div class="col-lg-10 adminlistbody">
+        <div class="container-fluid">
+            <!-- <input type="hidden" th:field="*{id}" /> -->
+            <form method="get" th:action="@{/admin/newsupplier}">
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                    <div class="form-group buttonposition">
+                        <button class="btn btn-primary btn-block btn-md">
+                            Add New Supplier
+                        </button>
+                    </div>
+                </div>
+                <input class="form-control" id="search-inp" placeholder="Search"
+                       type="search"/>
+            </form>
+
+            <table class="display table dataTable no-footer"
+                   id="supplierlistTable">
+                <thead style="background: darkcyan;">
+                <tr>
+                    <th>Supplier ID</th>
+                    <th>Supplier Name</th>
+                    <th>Supplier Code</th>
+                    <th>Supplier Email</th>
+                    <th>Supplier Phone</th>
+                    <th>Supplier Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+    <th:block th:include="fragments/ListHead :: head"></th:block>
+
+    <script type="text/javascript">
+	$(document).ready(function() {
+		var table = $('#saleslistTable').DataTable({
+			"sAjaxSource" : "/admin/saleslist",
+			"sAjaxDataProp" : "",
+			"pageLength" : 14,
+			"info" : true,
+			"autoWidth" : true,
+			"lengthChange" : false,
+			"order" : [ [ 0, "asc" ] ],
+			"aoColumns" : [ {
+				'mData' : "id"
+			}, {
+				"mData" : "billNumber"
+			}, {
+				"mData" : "quantity"
+			}, {
+				"mData" : "totalAmount"
+			}, {
+				"mData" : "customerName"
+			}, {
+				"mData" : "customerMobile"
+			}, {
+				"mData" : "billDate"
+			} ]
+		});
+
+		$('#search-inp').on('keyup', function() {
+			table.search($(this).val()).draw();
+		});
+
+		table.column(0).visible(false);
+	});
+
+    </script>
+</head>
+
+<body>
+<div th:replace="fragments/AdminNavbar :: admin-navbar"></div>
+<div class="wrapper">
+
+    <!-- sidebar -->
+    <div class="col-lg-2">
+        <div class="container-fluid">
+            <div th:replace="fragments/SidebarAdmin :: sidebar"></div>
+        </div>
+    </div>
+
+    <!-- main -->
+    <div class="col-lg-10  adminlisthead">
+        <div class="container-fluid">
+            <div class="well well-sm well-head">
+                <span style="margin-left: 10px;"> Sales List </span>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- main -->
+    <div class="col-lg-10 adminlistbody">
+        <div class="container-fluid">
+            <form method="get" th:action="@{/admin/newbill}">
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                    <div class="form-group buttonposition">
+                        <button class="btn btn-primary btn-block btn-md">Create
+                            New Bill
+                        </button>
+                    </div>
+                </div>
+                <input class="form-control" id="search-inp" placeholder="Search"
+                       type="search"/>
+            </form>
+
+            <table class="display table dataTable no-footer" id="saleslistTable">
+                <thead style="background: darkcyan;">
+                <tr>
+                    <th>Sales ID</th>
+                    <th>Bill Number</th>
+                    <th>Items</th>
+                    <th>Total Amount</th>
+                    <th>Customer Name</th>
+                    <th>Customer Mobile</th>
+                    <th>Bill Date</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

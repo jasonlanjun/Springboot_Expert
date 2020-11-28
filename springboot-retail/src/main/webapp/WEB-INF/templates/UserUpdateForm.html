@@ -1,0 +1,278 @@
+<!DOCTYPE HTML>
+
+<html xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+    <th:block th:include="fragments/SidebarHead :: head"></th:block>
+    <link href="../css/adminLayout.css" rel="stylesheet" th:href="@{/css/adminLayout.css}"
+          type="text/css"></link>
+    <script th:src="@{/js/stateCityOperation.js}" type="text/javascript"></script>
+</head>
+
+<body style="background-color: #FFF;">
+<div th:replace="fragments/MainNavbar :: main-navbar"></div>
+
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="fragments/AdminNavbar :: admin-navbar"></div>
+</div>
+
+<div class="wrapper">
+
+    <!-- sidebar -->
+    <div class="col-lg-2">
+        <div class="container-fluid">
+            <div th:replace="fragments/SidebarAdmin :: sidebar"></div>
+        </div>
+    </div>
+
+    <!-- main -->
+    <div class="col-lg-10  adminmainhead">
+        <div class="container-fluid">
+            <div class="well well-sm well-head">
+                <span style="margin-left: 10px;"> User Permissions </span>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- main -->
+    <div class="col-lg-6 adminbodyhead">
+        <div class="container-fluid">
+            <form method="POST" th:action="@{/admin/updateuserdetails}"
+                  th:object="${user}">
+                <input th:field="*{id}" th:value="${user.id}" type="hidden"/>
+                <div class="h13">Update User Details</div>
+                <hr></hr>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="firstName"
+                                   style="margin-top: 7px;">First Name</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="First Name"
+                                   required="required" th:field="*{firstName}"
+                                   type="text"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="lastName"
+                                   style="margin-top: 7px;">LastName</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Last Name"
+                                   required="required" th:field="*{lastName}"
+                                   type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="userName"
+                                   style="margin-top: 7px;">User Name</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="User Name"
+                                   readonly="readonly" required="required"
+                                   th:field="*{userName}" type="text"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="gender" style="margin-top: 7px;">Gender</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Gender"
+                                   readonly="readonly" required="required" th:field="*{gender}"
+                                   type="text"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="email" style="margin-top: 7px;">Email</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Email"
+                                   required="required" th:field="*{email}" type="text"/>
+                        </div>
+
+                        <p class="alert alert-danger fade in" th:if="${param.emailExist}">
+                            <strong>Email already exist.</strong>
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="contactNo"
+                                   style="margin-top: 7px;">Contact No</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Contact No"
+                                   required="required" th:field="*{contactNo}"
+                                   type="text"/>
+                        </div>
+
+                        <p class="alert alert-danger fade in"
+                           th:if="${param.invalidContact}">
+                            <strong>Invalid Contact Number Entered.</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="dob" style="margin-top: 7px;">Date
+                                of Birth</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="DOB"
+                                   required="required" th:field="*{DOB}" type="text"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="country" style="margin-top: 7px;">Country</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <select class="form-control input-md" id="country"
+                                    required="required" th:field="*{country}">
+                                <option value="">Select Country</option>
+                                <option th:text="India" th:value="India"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="state" style="margin-top: 7px;">State</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <select class="form-control input-md" id="state" onChange="getCity(this.value);"
+                                    required="required" tabindex="6"
+                                    th:field="*{state}">
+                                <option value="">Select State</option>
+                                <option th:each="state : ${stateList}"
+                                        th:text="${state.stateName}" th:value="${state.stateName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="city" style="margin-top: 7px;">City</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <select class="form-control input-md" id="city" required="required"
+                                    tabindex="6" th:field="*{city}">
+                                <option value="">Select City</option>
+                                <option th:each="city : ${cityList}"
+                                        th:text="${city.cityName}" th:value="${city.cityName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="street" style="margin-top: 7px;">Street</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Street"
+                                   required="required" th:field="*{street}" type="text"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="nationality"
+                                   style="margin-top: 7px;">Nationality</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Nationality"
+                                   required="required" th:field="*{nationality}"
+                                   type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="zipcode" style="margin-top: 7px;">Zipcode</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Zipcode"
+                                   required="required" th:field="*{zipcode}" type="text"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="licenseNo"
+                                   style="margin-top: 7px;">License No.</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="License No"
+                                   readonly="readonly" required="required"
+                                   th:field="*{licenseNo}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="btn btn-block btn-md" type="reset" value="Cancel"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="btn btn-primary btn-block btn-md" type="submit"
+                                   value="Save"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <img alt="Product" style="width: 100%; margin-left: 10px; margin-top: 80px;"
+             th:src="@{/img/Products.png}"/>
+    </div>
+</div>
+</body>
+</html>

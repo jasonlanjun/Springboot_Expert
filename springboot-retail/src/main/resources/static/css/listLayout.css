@@ -1,0 +1,31 @@
+input[type=search] {
+	-webkit-appearance: button;
+	margin-top: 10px;
+    width: 250px;
+    margin-bottom: -50px;
+    margin-left: 940px;
+}
+
+table.dataTable.no-footer {
+	font-size: 12px;
+	font-weight: 600;
+	border-bottom: 0px solid #111;
+	margin-top: 40px;
+	padding: 15px;
+	width: 100%;
+	box-shadow: 0 0px 10px 0 #999, 0 0px 0px 0 #999;
+}
+
+.dataTables_filter, .dataTables_info {
+	display: none;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    margin-right: 20px;
+    padding-top: 0.25em;
+    font-weight: 500;
+}
+
+.buttonposition {
+	margin-left: 15px;
+}

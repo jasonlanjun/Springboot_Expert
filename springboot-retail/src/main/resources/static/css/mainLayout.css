@@ -1,0 +1,508 @@
+@import url(https://fonts.googleapis.com/css?family=Passion+One);
+
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+@import
+	url('https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed')
+	;
+
+@import url('https://fonts.googleapis.com/css?family=Saira+Condensed');
+
+@font-face {
+	font-family: 'Salsa';
+	src: url('/fonts/Salsa-Regular.ttf') format('truetype');
+}
+
+body {
+	background-color: #FFF;
+}
+
+.adminmainhead { 
+	margin-left: -50px;
+	margin-top: 70px;
+}
+
+.adminbodyhead { 
+	margin-left: -50px;
+}
+
+.adminlisthead { 
+	margin-left: -23px;
+    margin-top: 70px;
+    width: 1220px;
+}
+
+.adminlistbody {
+	margin-left: -53px;
+    margin-top: -20px;
+}
+
+.navbar-inverse {
+    background-color: #2d2c41;
+    border-color: #2d2c41;
+}
+
+h3 {
+	font-size: 23px;
+	color: #f2ebeb;
+	margin-top: 180px;
+	margin-bottom: 25px;
+	line-height: 1.7;
+	text-align: center;
+	font-weight: 300;
+	width: 100%;
+}
+
+h2 {
+	display: block;
+	font-family: sans-serif;
+	font-size: 39px;
+	font-weight: bold;
+	color: #333333;
+	line-height: 2.2;
+	text-align: center;
+}
+
+.list {
+	display: block;
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: cyan;
+}
+
+h4 {
+	font-size: 20px;
+	color: #03A9F4;
+	margin-top: 25px;
+	margin-left: -100px;
+}
+
+h6 {
+	font-size: 35px;
+	color: Black;
+	margin-top: 75px;
+	text-align: center;
+	font-family: 'Salsa', cursive;
+}
+
+.h7 {
+	font-size: 16px;
+	color: White;
+	margin-top: 30px;
+	margin-left: 90px;
+}
+
+.h8 {
+	font-size: 16px;
+	color: black;
+	margin-top: 15px;
+	margin-left: 20px;
+	width: 100%;
+	text-align: center;
+	font-family: 'Salsa', cursive;
+}
+
+.h12 {
+	font-size: 17px;
+	color: #009688;
+	margin-top: 5px;
+	margin-left: -110px;
+	width: 60%;
+	text-align: left;
+	font-family: 'Salsa', sans-serif;
+}
+
+.button {
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 20px 130px;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+.formshadowSign {
+	background-image: url("../img/Shadow.jpg");
+	margin-top: 70px;
+	height: 640px;
+	padding: 25px;
+	box-shadow: 0 50px 190px 0 rgba(0, 0, 0, 1.0), 0 6px 20px 0
+		rgba(0, 0, 0, 1.0);
+}
+
+.formshadowLogin {
+	background-image: url("../img/Shadow.jpg");
+	margin-top: 150px;
+	height: 500px;
+	padding: 18px;
+	box-shadow: 0 50px 190px 0 rgba(0, 0, 0, 1.0), 0 6px 20px 0
+		rgba(0, 0, 0, 1.0);
+}
+
+.formshadowForgotPassword {
+	background-image: url("../img/Shadow.jpg");
+	margin-top: 170px;
+	height: 440px;
+	padding: 25px;
+	box-shadow: 0 50px 190px 0 rgba(0, 0, 0, 1.0), 0 6px 20px 0
+		rgba(0, 0, 0, 1.0);
+}
+
+.formshadowResetPassword {
+	background-image: url("../img/Shadow.jpg");
+	margin-top: 170px;
+	height: 400px;
+	padding: 25px;
+	box-shadow: 0 50px 190px 0 rgba(0, 0, 0, 1.0), 0 6px 20px 0
+		rgba(0, 0, 0, 1.0);
+}
+
+.copyright {
+	position: absolute;
+	width: 100%;
+	color: #fff;
+	line-height: 40px;
+	font-size: 0.7em;
+	text-align: center;
+	bottom: 0;
+}
+
+.hr {
+	width: 95%;
+	margin-top: 185px;
+}
+
+hr {
+	color: #FF0000;
+}
+
+.table-bordered td, .table-bordered th {
+	border-color: black !important;
+	border-width: 2.0px !important;
+}
+
+.navbar.navbar-inverse ul li a, a, u {
+	color: white !important;
+	font-family: 'Salsa', cursive;
+	font-weight: bold;
+	text-decoration: none !important;
+}
+
+.btn.mybtn {
+	background-color: none !important;
+	border-color: none !important;
+	background: none !important;
+	font-family: Merriweather;
+	font-weight: bold;
+	color: White !important;
+	padding-top: 15px;
+}
+
+.table.table-bordered {
+	font-family: Merriweather;
+	font-weight: bold;
+}
+
+.dropdown-menu {
+	background-color: black !important;
+}
+/*
+tr
+:not (
+:first-child
+)
+{
+counter-increment : rowNumber ;
+}
+ tr td:first-child::before {
+	content: counter(rowNumber);
+	min-width: 1em;
+	margin-right: 0.5em;
+} */
+
+.box1 {
+	padding: 15px;
+	margin-top: 170px;
+	margin-left: 60px;
+	width: 280px;
+}
+
+.box2 {
+	padding: 15px;
+	margin-top: 100px;
+	margin-left: 60px;
+	width: 280px;
+}
+
+.box3 {
+	padding: 15px;
+	margin-top: 20px;
+	margin-left: 75px;
+	width: 350px;
+}
+
+h5 {
+	font-size: 15px;
+	color: black;
+	margin-top: 25px;
+	font-family: 'Salsa', cursive;
+}
+
+p {
+	font-size: 12px;
+	color: #6c7279;
+	padding-top: 10px;
+	width: 175px;
+	font-family: 'Encode Sans Semi Condensed', sans-serif;
+}
+
+.glyphicon.glyphicon-briefcase {
+	font-size: 35px;
+	color: deeppink;
+}
+
+.glyphicon.glyphicon-file {
+	font-size: 35px;
+	color: mediumaquamarines;
+}
+
+.glyphicon.glyphicon-list-alt {
+	font-size: 35px;
+	color: darkmagenta;
+}
+
+.glyphicon.glyphicon-folder-open {
+	font-size: 35px;
+	color: cadetblue;
+}
+
+.glyphicon.glyphicon-ok {
+	font-size: 10px;
+	color: aquamarine;
+}
+
+.glyphicon.glyphicon-th-large {
+	font-size: 35px;
+	color: blueviolet;
+	margin-top: 100px;
+	margin-left: 110px;
+}
+
+.glyphicon.glyphicon-wrench {
+	font-size: 35px;
+	color: darkturquoise;
+	margin-top: 100px;
+	margin-left: 110px;
+}
+
+.glyphicon.glyphicon-lock {
+	font-size: 35px;
+	color: chocolate;
+	margin-top: 100px;
+	margin-left: 110px;
+}
+
+.glyphicon.glyphicon-inbox {
+	font-size: 35px;
+	color: crimson;
+	margin-top: 100px;
+	margin-left: 110px;
+}
+
+.h9 {
+	font-family: 'Passion One', cursive;
+	font-size: 60px;
+	text-align: center;
+	margin-top: 120px;
+}
+
+.h11 {
+	font-family: 'Passion One', cursive;
+	font-size: 50px;
+	text-align: center;
+	margin-top: 80px;
+	margin-bottom: 30px;
+}
+
+.h10 {
+	font-family: 'Salsa', cursive;
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 30px;
+	margin-left: 370px;
+	width: 50%;
+}
+
+.h14 {
+	font-family: 'Salsa', cursive;
+	font-size: 28px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 10px;
+	color: white;
+}
+
+.button {
+	font-weight: 600;
+	color: White;
+	letter-spacing: 0px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	border-radius: 2px;
+	font-size: 13px;
+	margin: 40px 530px;
+	text-transform: uppercase;
+	background-color: #32c5d2;
+}
+
+.button {
+	font-weight: 600;
+	color: White;
+	letter-spacing: 0px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	border-radius: 2px;
+	font-size: 13px;
+	margin: 40px 530px;
+	text-transform: uppercase;
+	background-color: #32c5d2;
+}
+
+.mt {
+	margin-top: 8px;
+	margin-left: 2px;
+}
+
+.mr {
+	margin-left: 2px;
+}
+
+.btn-lg {
+	padding: 14px 28px 13px 28px;
+	font-size: 15px;
+}
+
+.btn-theme-dark:hover {
+	color: #fff;
+	background-color: black;
+}
+
+.vl {
+	border-left: 4px solid #32c5d2;
+	height: 500px;
+	margin-left: -10px;
+}
+
+.contactHead {
+	font-family: 'Salsa', cursive;
+	margin-left: -110px;
+	color: #da2b1e
+}
+
+.loginBtn {
+	width: 100%;
+	box-sizing: border-box;
+	position: relative;
+	margin-top: 10px;
+	border: none;
+	text-align: center;
+	line-height: 34px;
+	white-space: nowrap;
+	border-radius: 0.2em;
+	font-size: 12px;
+	color: #FFF;
+}
+
+.loginBtn:focus {
+	outline: none;
+}
+
+.loginBtn:active {
+	box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Facebook */
+.loginBtn--facebook {
+	background-color: #4C69BA;
+	background-image: linear-gradient(#4C69BA, #3B55A0);
+	text-shadow: 0 -1px 0 #354C8C;
+}
+
+.loginBtn--facebook:before {
+	border-right: #364e92 1px solid;
+	background:
+		url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png')
+		6px 6px no-repeat;
+}
+
+.loginBtn--facebook:hover, .loginBtn--facebook:focus {
+	background-color: #5B7BD5;
+	background-image: linear-gradient(#5B7BD5, #4864B1);
+}
+
+/* Google */
+.loginBtn--google {
+	background: #DD4B39;
+}
+
+.loginBtn--google:before {
+	border-right: #BB3F30 1px solid;
+	background:
+		url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png')
+		6px 6px no-repeat;
+}
+
+.loginBtn--google:hover, .loginBtn--google:focus {
+	background: #E74B37;
+}
+
+.roundbtn {
+	display: block;
+	height: 50px;
+	width: 50px;
+	border-radius: 90%;
+	border: 0px solid;
+	text-align: center;
+	margin-left: 5px;
+	font-size: 15px;
+	color: White;
+	background-color: #32c5d2;
+}
+
+.h13 {
+	font-family: 'Passion One', cursive;
+	font-size: 30px;
+	text-align: center;
+	margin: -10px -10px -10px -10px;
+}
+
+a {
+	color: White;
+	font-family: 'Salsa', cursive;;
+	font-weight: 300;
+}
+
+.alert {
+	width: 100%;
+}
+
+input::-webkit-input-placeholder {
+   font-size: 13px;
+   font-family: 'Encode Sans Semi Condensed', sans-serif;
+}
+
+.form-control {
+	font-family: 'Encode Sans Semi Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+}

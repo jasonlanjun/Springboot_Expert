@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+
+<html xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+    <link href="../css/home.css" rel="stylesheet" th:href="@{/css/home.css}"
+          type="text/css"></link>
+</head>
+
+<body style="background-color: gainsboro;">
+
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="fragments/AdminNavbar :: admin-navbar"></div>
+</div>
+
+<div sec:authorize="isAnonymous()">
+    <div th:replace="fragments/MainNavbar :: main-navbar"></div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group" style="margin-top: 340px;">
+                <p class="alert alert-danger fade in" id="demo"
+                   th:if="${param.emailExist}">
+                    <strong>Email already exist.</strong>
+                </p>
+            </div>
+            <div class="form-group" style="margin-top: 463px;">
+                <p class="alert alert-danger fade in" id="demo"
+                   th:if="${param.invalidDob}">
+                    <strong>Invalid Date of birth</strong>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="col-sm-6">
+            <div class="formshadowSign">
+                <form method="POST" th:action="@{/saveuser}" th:object="${user}">
+                    <input th:field="*{id}" type="hidden"/>
+                    <div class="h13">USER REGISTRATION</div>
+                    <hr></hr>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-lg" placeholder="First Name"
+                                       required="required" tabindex="1" th:field="*{firstName}"
+                                       type="text"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-lg" placeholder="Last Name"
+                                       required="required" tabindex="2" th:field="*{lastName}"
+                                       type="text"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input-lg" placeholder="User Name"
+                               required="required" tabindex="3" th:field="*{userName}"
+                               type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input-lg" placeholder="Password"
+                               required="required" tabindex="4"
+                               th:field="*{password}" type="password"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input-lg" placeholder="Email Address"
+                               required="required" tabindex="5" th:field="*{email}"
+                               type="email"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+
+                                <select class="form-control input-lg" required="required"
+                                        tabindex="6" th:field="*{gender}">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-lg" placeholder="License No"
+                                       required="required" tabindex="7" th:field="*{licenseNo}"
+                                       type="text"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-lg" placeholder="DOB - DD/MM/YYYY"
+                                       required="required" tabindex="8" th:field="*{DOB}"
+                                       type="text"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input class="form-control input-lg" id="contact" placeholder="Contact No"
+                                       required="required" tabindex="9" th:field="*{contactNo}"
+                                       type="text"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <input class="btn btn-primary btn-block btn-lg" tabindex="13"
+                                   type="submit" value="Register"/>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-5 col-md-5">
+                        <hr></hr>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div>
+                            <button class="roundbtn">
+                                <strong>OR</strong>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-md-5">
+                        <hr></hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <button class="loginBtn loginBtn--facebook">
+                            <strong>LOGIN WITH FACEBOOK </strong>
+                        </button>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <button class="loginBtn loginBtn--google">
+                            <strong>LOGIN WITH GOOGLE </strong>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group" style="margin-top: 407px;">
+                <p class="alert alert-danger fade in" id="demo"
+                   th:if="${param.invalidLicense}">
+                    <strong>Invalid license number</strong>
+                </p>
+            </div>
+
+            <div class="form-group" style="margin-top: 463px;">
+                <p class="alert alert-danger fade in" id="demo"
+                   th:if="${param.invalidContact}">
+                    <strong>Invalid contact number</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

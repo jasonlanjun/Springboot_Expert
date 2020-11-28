@@ -1,0 +1,21 @@
+@import
+	url('https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed')
+	;
+
+table table {
+	counter-reset: rowNumber;
+}
+
+table tr {
+	counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+	content: counter(rowNumber);
+}
+
+table.dataTable {
+	border-collapse: collapse;
+	border-top: 2px solid black;
+}
+}

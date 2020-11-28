@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+    <th:block th:include="fragments/ListHead :: head"></th:block>
+
+    <script type="text/javascript">
+	$(document).ready(function() {
+		var table = $('#stocklistTable').DataTable({
+			"sAjaxSource" : "/admin/stocklist",
+			"sAjaxDataProp" : "",
+			"pageLength" : 14,
+			"info" : true,
+			"autoWidth" : true,
+			"lengthChange" : false,
+			"order" : [ [ 0, "asc" ] ],
+			"aoColumns" : [ {
+				'mData' : "id"
+			}, {
+				"mData" : "stockCategory"
+			}, {
+				"mData" : "stockBrand"
+			}, {
+				"mData" : "stockProduct"
+			}, {
+				"mData" : "stockQuantity"
+			}, {
+				"mData" : "stockDate"
+			}, {
+				"mData" : "stockStatus"
+			} ]
+		});
+
+		$('#search-inp').on('keyup', function() {
+			table.search($(this).val()).draw();
+		});
+
+		table.column(0).visible(false);
+	});
+
+    </script>
+</head>
+
+<body>
+<div th:replace="fragments/AdminNavbar :: admin-navbar"></div>
+<div class="wrapper">
+
+    <!-- sidebar -->
+    <div class="col-lg-2">
+        <div class="container-fluid">
+            <div th:replace="fragments/SidebarAdmin :: sidebar"></div>
+        </div>
+    </div>
+
+    <!-- main -->
+    <div class="col-lg-10  adminlisthead">
+        <div class="container-fluid">
+            <div class="well well-sm well-head">
+                <span style="margin-left: 10px;"> Stock List </span>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- main -->
+    <div class="col-lg-10 adminlistbody">
+        <div class="container-fluid">
+            <form>
+                <input class="form-control" id="search-inp" placeholder="Search"
+                       style="margin-bottom: -25px;" type="search"/>
+            </form>
+
+            <table class="display table dataTable no-footer" id="stocklistTable">
+                <thead style="background: darkcyan;">
+                <tr>
+                    <th>Stock ID</th>
+                    <th>Category</th>
+                    <th>Brand</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

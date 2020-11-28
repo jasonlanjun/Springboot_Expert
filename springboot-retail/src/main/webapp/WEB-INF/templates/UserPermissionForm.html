@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+
+<html xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+    <th:block th:include="fragments/SidebarHead :: head"></th:block>
+    <link href="../css/adminLayout.css" rel="stylesheet" th:href="@{/css/adminLayout.css}"
+          type="text/css"></link>
+    <script th:src="@{/js/stateCityOperation.js}" type="text/javascript"></script>
+</head>
+
+<body style="background-color: #FFF;">
+<div th:replace="fragments/MainNavbar :: main-navbar"></div>
+
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="fragments/AdminNavbar :: admin-navbar"></div>
+</div>
+
+<div class="wrapper">
+
+    <!-- sidebar -->
+    <div class="col-lg-2">
+        <div class="container-fluid">
+            <div th:replace="fragments/SidebarAdmin :: sidebar"></div>
+        </div>
+    </div>
+
+    <!-- main -->
+    <div class="col-lg-10  adminmainhead">
+        <div class="container-fluid">
+            <div class="well well-sm well-head">
+                <span style="margin-left: 10px;"> User Permissions </span>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- main -->
+    <div class="col-lg-6 adminbodyhead">
+        <div class="container-fluid">
+            <form method="POST" th:action="@{/admin/userpermission}"
+                  th:object="${user}">
+                <input th:field="*{id}" th:value="${user.id}" type="hidden"/>
+                <div class="h13">User Permissions</div>
+                <hr></hr>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="firstName"
+                                   style="margin-top: 7px;">First Name</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="First Name"
+                                   required="required" th:field="*{firstName}"
+                                   type="text"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="lastName"
+                                   style="margin-top: 7px;">LastName</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Last Name"
+                                   required="required" th:field="*{lastName}"
+                                   type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="userName"
+                                   style="margin-top: 7px;">User Name</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="User Name"
+                                   required="required" th:field="*{userName}"
+                                   type="text"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="email" style="margin-top: 7px;">Email</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Email"
+                                   required="required" th:field="*{email}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="role" style="margin-top: 7px;">Role</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <select class="form-control input-md" required="required"
+                                    th:field="*{userRole}">
+                                <option value="">Select Role</option>
+                                <option th:text="ROLE_USER" th:value="ROLE_USER"></option>
+                                <option th:text="ROLE_ADMIN" th:value="ROLE_ADMIN"></option>
+                                <option th:text="ROLE_MANAGER" th:value="ROLE_MANAGER"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="enabled" style="margin-top: 7px;">Status</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <select class="form-control input-md" required="required"
+                                    th:field="*{enabled}">
+                                <option value="">Select Status</option>
+                                <option th:text="Enable" th:value="1"></option>
+                                <option th:text="Disable" th:value="0"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="btn btn-block btn-md" tabindex="13" type="reset"
+                                   value="Cancel"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="btn btn-primary btn-block btn-md" tabindex="13"
+                                   type="submit" value="Save"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <img alt="Product" style="width: 100%; margin-left: 10px; margin-top: 80px;"
+             th:src="@{/img/Products.png}"/>
+    </div>
+</div>
+</body>
+</html>

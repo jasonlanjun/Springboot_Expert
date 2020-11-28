@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+    <link href="../css/home.css" rel="stylesheet" th:href="@{/css/home.css}" type="text/css"></link>
+</head>
+
+<body>
+<div th:replace="fragments/MainNavbar :: main-navbar"></div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-4"></div>
+
+        <div class="col-sm-4">
+            <div class="formshadowLogin">
+                <form method="POST" th:action="@{/login}">
+                    <img alt="Person" style="width: 30%; margin-left: 110px; margin-top: 10px; margin-bottom: 25px;"
+                         th:src="@{/img/Login.svg}"/>
+                    <br></br>
+                    <div class="h13">Welcome</div>
+                    <hr></hr>
+                    <p class="alert alert-danger fade in" th:if="${param.error}">
+                        <strong>Error ! Invalid username or password </strong>
+                    </p>
+                    <p class="alert alert-success" th:if="${param.logout}">
+                        <strong>You have been logged out.</strong>
+                    </p>
+                    <p class="alert alert-success" th:if="${param.registered}">
+                        <strong>You have registered successfully.</strong>
+                    </p>
+                    <div class="form-group">
+                        <i class="fa fa-signal fa-2x"></i> <input class="form-control input-lg"
+                                                                  id="username" name="username"
+                                                                  placeholder="User Name"
+                                                                  required="required" tabindex="3"
+                                                                  type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control input-lg" id="password" name="password"
+                               placeholder="Password" required="required"
+                               tabindex="4" type="password"/>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <input class="btn btn-success btn-block btn-lg" tabindex="7"
+                                   type="submit" value="Sign In"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-9 col-md-9">
+                            <a th:href="@{/forgotpassword}">Forgot your Password</a>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <a th:href="@{/newuser}">Register </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-sm-4"></div>
+    </div>
+</div>
+</body>
+</html>

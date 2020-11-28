@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+
+<html xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+    <th:block th:include="fragments/SidebarHead :: head"></th:block>
+    <link href="../css/adminLayout.css" rel="stylesheet" th:href="@{/css/adminLayout.css}" type="text/css"></link>
+    <script th:src="@{/js/stateCityOperation.js}" type="text/javascript"></script>
+</head>
+
+<body style="background-color: #FFF;">
+<div th:replace="fragments/MainNavbar :: main-navbar"></div>
+
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="fragments/AdminNavbar :: admin-navbar"></div>
+</div>
+
+<div class="wrapper">
+
+    <!-- sidebar -->
+    <div class="col-lg-2">
+        <div class="container-fluid">
+            <div th:replace="fragments/SidebarAdmin :: sidebar"></div>
+        </div>
+    </div>
+
+    <!-- main -->
+    <div class="col-lg-10  adminmainhead">
+        <div class="container-fluid">
+            <div class="well well-sm well-head">
+                <span style="margin-left: 10px;"> Supplier </span>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- main -->
+    <div class="col-lg-6 adminbodyhead">
+        <div class="container-fluid">
+            <form method="POST" th:action="@{/admin/savesupplier}" th:object="${supplier}">
+                <input th:field="*{id}" th:value="${supplier.id}" type="hidden"/>
+                <div th:if="${supplier.id}">
+                    <div class="h13">Update Supplier</div>
+                </div>
+                <div th:unless="${supplier.id}">
+                    <div class="h13">Add New Supplier</div>
+                </div>
+
+                <hr></hr>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Supplier Name"
+                                   required="required" tabindex="1"
+                                   th:field="*{supplierName}" type="text"/>
+                            <p class="alert alert-danger fade in"
+                               th:if="${param.supplierExist}">
+                                <strong>Supplier already exist.</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Supplier Code"
+                                   required="required" tabindex="2"
+                                   th:field="*{supplierCode}" type="text"/>
+                            <p class="alert alert-danger fade in"
+                               th:if="${param.codeExist}">
+                                <strong>Code already exist.</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Supplier Email"
+                                   required="required" tabindex="1"
+                                   th:field="*{supplierEmail}" type="text"/>
+                            <p class="alert alert-danger fade in"
+                               th:if="${param.emailExist}">
+                                <strong>Email already exist.</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Supplier Phone"
+                                   required="required" tabindex="2"
+                                   th:field="*{supplierPhone}" type="text"/>
+                            <p class="alert alert-danger fade in"
+                               th:if="${param.invalidContact}">
+                                <strong>Invalid phone entered.</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <select class="form-control input-md" id="supplierCountry" required="required"
+                                    tabindex="6" th:field="*{supplierCountry}">
+                                <option value="">Select Country</option>
+                                <option th:text="India"
+                                        th:value="India"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <select class="form-control input-md" id="state" onChange="getCity(this.value);"
+                                    required="required" tabindex="6" th:field="*{supplierState}">
+                                <option value="">Select State</option>
+                                <option th:each="state : ${stateList}"
+                                        th:text="${state.stateName}"
+                                        th:value="${state.stateName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <select class="form-control input-md" id="city" required="required"
+                                    tabindex="6" th:field="*{supplierCity}">
+                                <option value="">Select City</option>
+                                <option th:each="city : ${cityList}"
+                                        th:text="${city.cityName}"
+                                        th:value="${city.cityName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Supplier Address"
+                                   required="required" tabindex="1"
+                                   th:field="*{supplierAddress}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Supplier Zipcode"
+                                   required="required" tabindex="2"
+                                   th:field="*{supplierZipcode}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="btn btn-block btn-md" tabindex="13" type="reset"
+                                   value="Cancel"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="btn btn-primary btn-block btn-md" tabindex="13"
+                                   type="submit" value="Save"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <img alt="Product" style="width: 100%; margin-left: 10px; margin-top: 80px;"
+             th:src="@{/img/Products.png}"/>
+    </div>
+</div>
+</body>
+</html>

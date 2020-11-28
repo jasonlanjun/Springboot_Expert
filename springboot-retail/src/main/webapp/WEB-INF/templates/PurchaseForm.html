@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+
+<html xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+    <th:block th:include="fragments/SidebarHead :: head"></th:block>
+    <link href="../css/adminLayout.css" rel="stylesheet" th:href="@{/css/adminLayout.css}"
+          type="text/css"></link>
+    <script th:src="@{/js/getPurchaseOperation.js}" type="text/javascript"></script>
+</head>
+
+<body style="background-color: #FFF;">
+<div th:replace="fragments/MainNavbar :: main-navbar"></div>
+
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="fragments/AdminNavbar :: admin-navbar"></div>
+</div>
+
+<div class="wrapper">
+
+    <!-- sidebar -->
+    <div class="col-lg-2">
+        <div class="container-fluid">
+            <div th:replace="fragments/SidebarAdmin :: sidebar"></div>
+        </div>
+    </div>
+
+    <!-- main -->
+    <div class="col-lg-10  adminmainhead">
+        <div class="container-fluid">
+            <div class="well well-sm well-head">
+                <span style="margin-left: 10px;"> Purchase Order </span>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- main -->
+    <div class="col-lg-6 adminbodyhead">
+        <div class="container-fluid">
+            <form method="POST" th:action="@{/admin/savepurchase}"
+                  th:object="${purchase}">
+                <input th:field="*{id}" type="hidden"/>
+                <div th:if="${purchase.id}">
+                    <div class="h13">Update Purchase Order</div>
+                </div>
+                <div th:unless="${purchase.id}">
+                    <div class="h13">Create Purchase Order</div>
+                </div>
+                <hr></hr>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="poNumber"
+                                   style="margin-top: 7px;">Order Number</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="PO Number"
+                                   readonly="readonly" required="required" tabindex="1"
+                                   th:field="*{poNumber}" type="text"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="inputlabel" for="poStatus"
+                                   style="margin-top: 7px;">Order Status</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <div th:if="${purchase.id}">
+                                <select class="form-control input-md" id="poStatus"
+                                        required="required" tabindex="6" th:field="*{poStatus}">
+                                    <option th:text="Pending" th:value="Pending"></option>
+                                    <option th:text="Completed" th:value="Completed"></option>
+                                </select>
+                            </div>
+                            <div th:unless="${purchase.id}">
+                                <input class="form-control input-md" placeholder="Status"
+                                       readonly="readonly" required="required" tabindex="2"
+                                       th:field="*{poStatus}" type="text"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <select class="form-control input-md selectStyle" id="poCategory"
+                                    onChange="getPoBrand(this.value);" required="required" tabindex="6"
+                                    th:field="*{poCategory}">
+                                <option value="">Select Product Category</option>
+                                <option th:each="product : ${productlist}"
+                                        th:text="${product.productCategory}"
+                                        th:value="${product.productCategory}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <select class="form-control input-md selectStyle" id="poBrand"
+                                    onChange="getProduct(this.value);" required="required" tabindex="6"
+                                    th:field="*{poBrand}">
+                                <option value="">Select Product Brand</option>
+                                <option th:each="product : ${productlist}"
+                                        th:text="${product.productBrand}"
+                                        th:value="${product.productBrand}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <select class="form-control input-md selectStyle" id="poProduct"
+                                    required="required" tabindex="6" th:field="*{poProduct}">
+                                <option value="">Select Product</option>
+                                <option th:each="product : ${productlist}"
+                                        th:text="${product.productName}"
+                                        th:value="${product.productName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <select class="form-control input-md" required="required"
+                                    tabindex="6" th:field="*{poSupplier}">
+                                <option value="">Select Supplier</option>
+                                <option th:each="supplier : ${supplierlist}"
+                                        th:text="${supplier.supplierName}"
+                                        th:value="${supplier.supplierName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Quantity"
+                                   required="required" tabindex="2" th:field="*{poQuantity}"
+                                   type="text"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Expected Delivery"
+                                   required="required" tabindex="1"
+                                   th:field="*{poDeliveryDate}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="btn btn-block btn-md" tabindex="13" type="reset"
+                                   value="Cancel"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="btn btn-primary btn-block btn-md" tabindex="13"
+                                   type="submit" value="Create Order"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <img alt="Product" style="width: 100%; margin-left: 10px; margin-top: 80px;"
+             th:src="@{/img/Products.png}"/>
+    </div>
+</div>
+</body>
+</html>

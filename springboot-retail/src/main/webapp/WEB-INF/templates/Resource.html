@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+</head>
+
+<body style="background-color: White;">
+<div th:replace="fragments/MainNavbar :: main-navbar"></div>
+<div class="col-sm-2">
+    <div class="box1">
+        <span class="glyphicon glyphicon-folder-open"></span>
+        <h5>
+            <strong> Inventory management </strong>
+        </h5>
+        <p>Keep track of your products as you sell and restock across
+            multiple locations and channels.</p>
+    </div>
+
+    <div class="box2">
+        <span class="glyphicon glyphicon-briefcase"></span>
+        <h5>
+            <strong> Business contacts </strong>
+        </h5>
+        <p>Organize all your relationships in one place to speed up
+            invoicing and cash flow.</p>
+    </div>
+</div>
+<div class="col-sm-2">
+    <div class="box1">
+        <span class="glyphicon glyphicon-list-alt"></span>
+        <h5>
+            <strong> Orders and fulfillment </strong>
+        </h5>
+        <p>Manage all your orders in one place, arrange fulfillments and
+            get paid 3x faster.</p>
+    </div>
+    <div class="box2">
+        <span class="glyphicon glyphicon-file"></span>
+        <h5>
+            <strong> Reporting </strong>
+        </h5>
+        <p>Plan for growth with detailed custom reports on inventory and
+            sales trends.</p>
+    </div>
+</div>
+
+<div class="col-sm-8">
+    <img alt="Main" style="width: 100%; margin-top: 110px;"
+         th:src="@{/img/Resource.jpg}"/>
+</div>
+
+</body>
+</html>

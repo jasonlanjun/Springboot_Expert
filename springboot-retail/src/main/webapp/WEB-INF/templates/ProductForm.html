@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+
+<html xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/MainHead :: head"></th:block>
+    <th:block th:include="fragments/SidebarHead :: head"></th:block>
+    <link href="../css/adminLayout.css" rel="stylesheet" th:href="@{/css/adminLayout.css}"
+          type="text/css"></link>
+</head>
+
+<body style="background-color: #FFF;">
+<div th:replace="fragments/MainNavbar :: main-navbar"></div>
+
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="fragments/AdminNavbar :: admin-navbar"></div>
+</div>
+
+<div class="wrapper">
+
+    <!-- sidebar -->
+    <div class="col-lg-2">
+        <div class="container-fluid">
+            <div th:replace="fragments/SidebarAdmin :: sidebar"></div>
+        </div>
+    </div>
+
+    <!-- main -->
+    <div class="col-lg-10  adminmainhead">
+        <div class="container-fluid">
+            <div class="well well-sm well-head">
+                <span style="margin-left: 10px;"> Add Product </span>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- main -->
+    <div class="col-lg-6 adminbodyhead">
+        <div class="container-fluid">
+            <form method="POST" th:action="@{/admin/saveproduct}" th:object="${product}">
+                <input th:field="*{id}" type="hidden"/>
+                <div th:if="${product.id}">
+                    <div class="h13">Update Product</div>
+                </div>
+                <div th:unless="${product.id}">
+                    <div class="h13">Add Product</div>
+                </div>
+                <hr></hr>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Product Name"
+                                   required="required" tabindex="1"
+                                   th:field="*{productName}" type="text"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Product Code"
+                                   required="required" tabindex="2"
+                                   th:field="*{productCode}" type="text"/>
+                            <p class="alert alert-danger fade in"
+                               th:if="${param.codeExist}">
+                                <strong>Code already exist.</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Product Brand"
+                                   required="required" tabindex="1"
+                                   th:field="*{productBrand}" type="text"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Product Category"
+                                   required="required" tabindex="2"
+                                   th:field="*{productCategory}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Product Serial"
+                                   required="required" tabindex="1"
+                                   th:field="*{productSerialNo}" type="text"/>
+                            <p class="alert alert-danger fade in"
+                               th:if="${param.serialExist}">
+                                <strong>Serial Number already exist.</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Price Listing"
+                                   required="required" tabindex="2"
+                                   th:field="*{priceListing}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Price Selling"
+                                   required="required" tabindex="1"
+                                   th:field="*{priceSelling}" type="text"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="form-control input-md" placeholder="Price Discount"
+                                   required="required" tabindex="2"
+                                   th:field="*{priceDiscount}" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control input-md" placeholder="Product Barcode"
+                           required="required" tabindex="3"
+                           th:field="*{productBarcode}" type="text"/>
+                    <p class="alert alert-danger fade in"
+                       th:if="${param.barcodeExist}">
+                        <strong>Barcode already exist.</strong>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <input class="form-control input-md" placeholder="Product Description"
+                           required="required" tabindex="4"
+                           th:field="*{productDesc}" type="text"/>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="btn btn-block btn-md" tabindex="13" type="reset"
+                                   value="Cancel"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input class="btn btn-primary btn-block btn-md" tabindex="13"
+                                   type="submit" value="Add Product"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <img alt="Product" style="width: 100%; margin-left: 10px; margin-top: 80px;"
+             th:src="@{/img/Products.png}"/>
+    </div>
+</div>
+</body>
+</html>

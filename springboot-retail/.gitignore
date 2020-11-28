@@ -1,0 +1,7 @@
+# Dependency directories to ignore
+.settings
+target
+WebContent
+.classpath
+.project
+
